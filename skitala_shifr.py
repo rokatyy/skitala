@@ -47,7 +47,7 @@ def decoder(string,m):
 
 def attack(string,mini,maxi):   
 	"""
-	attack with using decode function more than (maxi-mini) times
+	attack with using decode function (maxi-mini) times
 	then check text with English dictionary and try to find the best variant
 	"""
 	print("Begin attack..")
