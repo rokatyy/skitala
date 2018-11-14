@@ -8,6 +8,20 @@ import numpy
 d = enchant.Dict("en_US") 
 dict_most_common_words={}
 
+def initial_string():
+	"""
+	returns string/text from sys.argv
+	"""
+	if '-f' in sys.argv:
+		try:
+			string = open(sys.argv[sys.argv.index('-f')+1],'r').read()
+		except:
+			print("No file there")
+			exit(0)
+	else: 
+		string = sys.argv[2]
+	return string
+
 def initial_n():
 	"""
 	returns parameter argv = '-n'
@@ -92,26 +106,17 @@ if __name__=="__main__":
 	"""
 	if len(sys.argv)<2:
 		exception()
-	
-	if '-f' in sys.argv:
-		try:
-			string = open(sys.argv[sys.argv.index('-f')+1],'r').read()
-		except:
-			print("No file there")
-			exit(0)
-	else: 
-		try:
-			string = sys.argv[2]
-		except: 
-			pass
 	try:
 		if sys.argv[1]=='-e':
+			string = initial_string()
 			n = initial_n()
 			print(encoder(string,n))
 		elif sys.argv[1]=='-d':
+			string = initial_string()
 			n = initial_n()
 			print(decoder(string,n))
 		elif sys.argv[1]=='-a':
+			string = initial_string()
 			n = initial_n()
 			m = initial_m()
 			new_string,key=(attack(string,n,m))
